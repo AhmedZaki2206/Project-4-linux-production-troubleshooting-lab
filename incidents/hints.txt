@@ -1,0 +1,20 @@
+01|Compare process CPU usage with the container CPU limit.
+02|Check cgroup memory, free, and the process list.
+03|Compare df and du under /tmp.
+04|Use df -i and count files under /tmp/inodes.
+05|Check docker compose ps and backend logs.
+06|Inspect owner and mode with ls -l and stat.
+07|Use ss -lntp and docker ps to find the port owner.
+08|Inspect the container environment and the HTTP response body.
+09|Compare /etc/resolv.conf with nslookup output.
+10|VM-ONLY: compare ip route with the expected default gateway.
+11|VM-ONLY: prove the service listens locally, then compare the VM firewall rules.
+12|Separate DNS success from TCP refusal.
+13|Read the Nginx error log and test the upstream directly.
+14|Inspect the HTTP status and active Nginx configuration.
+15|Run nginx -t before restarting anything.
+16|Inspect State, RestartCount, and previous logs.
+17|Use getent/nslookup by service name from the toolbox.
+18|Inspect published ports rather than assuming 8080.
+19|VM-ONLY: check ~/.ssh and private-key permissions plus ssh -vvv.
+20|Inspect directory permissions and test a rotation write manually.

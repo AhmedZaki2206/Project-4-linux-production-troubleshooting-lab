@@ -1,0 +1,30 @@
+---
+name: Safe validation
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: safe-validation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  static:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bash syntax
+        run: bash -n lab.sh scripts/*.sh tests/*.sh
+      - name: ShellCheck
+        run: shellcheck lab.sh scripts/*.sh tests/*.sh
+      - name: Compose validation
+        run: docker compose config --quiet
+      - name: Documentation inventory
+        run: |
+          test "$(wc -l < incidents/catalog.tsv)" -eq 20
+          test -f docs/SOLUTIONS.md
+          test -f docs/INCIDENT_REPORT_TEMPLATE.md
+      - name: Safe baseline smoke test
+        run: timeout 240 ./tests/smoke.sh
