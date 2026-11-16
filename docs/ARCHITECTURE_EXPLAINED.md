@@ -26,7 +26,7 @@ sequenceDiagram
 
 - backend: `0.50 CPU`, `128 MB`, `100 PIDs`, و`/tmp` حجمه `16 MB`.
 - proxy/toolbox: CPU وmemory وPID limits أصغر.
-- لا يوجد `privileged`, `NET_ADMIN`, host network أو Docker socket.
+- لا يوجد `privileged`, `NET_ADMIN`, host network أو Docker socket. الـproxy يأخذ فقط `CHOWN`, `DAC_OVERRIDE`, `SETUID`, و`SETGID` التي يحتاجها entrypoint الرسمي للتهيئة، بينما بقية capabilities محذوفة.
 - incidents 10 و11 و19 VM-only حتى لا نمنح container صلاحية `NET_ADMIN` أو نزيّف routing/firewall/SSH.
 
 ## Security trade-offs
