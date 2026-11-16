@@ -7,7 +7,11 @@ mkdir -p "$state"
 
 usage() { echo "Usage: ./lab.sh {list|start ID|status|hint ID|verify ID|reset ID|reset-all}"; }
 valid() { grep -q "^$1[[:space:]]" "$catalog"; }
-active() { [[ -f $state/active ]] && cat "$state/active" || true; }
+active() {
+  if [[ -f $state/active ]]; then
+    cat "$state/active"
+  fi
+}
 
 cmd=${1:-}
 case "$cmd" in
