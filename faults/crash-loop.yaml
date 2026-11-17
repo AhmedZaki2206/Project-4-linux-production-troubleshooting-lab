@@ -1,0 +1,9 @@
+services:
+  backend:
+    command: [sh, -c, "echo intentional crash; exit 42"]
+    restart: on-failure
+    healthcheck:
+      disable: true
+  proxy:
+    depends_on:
+      backend: {condition: service_started}

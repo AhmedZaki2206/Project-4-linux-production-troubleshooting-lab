@@ -1,0 +1,4 @@
+services:
+  proxy:
+    volumes:
+      - ./faults/unavailable.conf:/etc/nginx/nginx.conf:ro

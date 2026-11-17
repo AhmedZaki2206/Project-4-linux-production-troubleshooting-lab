@@ -1,0 +1,20 @@
+01	High CPU utilization	CONTAINER
+02	Memory pressure	CONTAINER
+03	Disk space exhaustion	CONTAINER
+04	Inode exhaustion	CONTAINER
+05	Service process failure	CONTAINER
+06	Incorrect file permissions	CONTAINER
+07	Port conflict	CONTAINER
+08	Missing environment variable	CONTAINER
+09	DNS resolution failure	CONTAINER
+10	Incorrect routing/gateway configuration	VM-ONLY
+11	Blocked application port	VM-ONLY
+12	Connection refused	CONTAINER
+13	Nginx 502 Bad Gateway	CONTAINER
+14	Nginx 503 Service Unavailable	CONTAINER
+15	Broken Nginx reverse proxy configuration	CONTAINER
+16	Container crash/restart loop	CONTAINER
+17	Container DNS failure	CONTAINER
+18	Incorrect port mapping	CONTAINER
+19	SSH key permission or authentication failure	VM-ONLY
+20	Backup or log rotation failure	CONTAINER
