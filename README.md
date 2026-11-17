@@ -20,7 +20,7 @@ flowchart LR
   end
 ```
 
-All services use project-specific names, resource limits, an internal Docker network, dropped capabilities and `no-new-privileges`. There is no Docker socket mount, host network, privileged container, cloud deployment, or host firewall/SSH modification.
+All services use project-specific names, resource limits, dropped capabilities and `no-new-privileges`. Backend and toolbox stay on the internal network. The proxy also joins a dedicated edge bridge so Docker can publish `127.0.0.1:8080`; no port is exposed on the LAN. There is no Docker socket mount, host network, privileged container, cloud deployment, or host firewall/SSH modification.
 
 ## Incident workflow
 
@@ -64,6 +64,8 @@ curl http://127.0.0.1:8080/health/ready
 ```
 
 Do not read `docs/SOLUTIONS.md` until you have recorded symptoms, evidence, and a hypothesis. `verify` confirms fault injection; after your manual fix, validate the health endpoint and then reset.
+
+The controller intentionally reuses images built by the quick-start command. Run `docker compose build` explicitly after changing a Dockerfile or application dependency.
 
 ## Useful diagnostics
 

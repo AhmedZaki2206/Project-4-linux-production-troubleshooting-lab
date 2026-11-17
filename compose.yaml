@@ -27,7 +27,7 @@ services:
       - lab_logs:/var/log/nginx
     depends_on:
       backend: {condition: service_healthy}
-    networks: [labnet]
+    networks: [labnet, edge]
     mem_limit: 64m
     cpus: 0.25
     pids_limit: 50
@@ -47,6 +47,8 @@ networks:
   labnet:
     name: linux-troubleshooting-lab-net
     internal: true
+  edge:
+    name: linux-troubleshooting-lab-edge
 volumes:
   lab_logs:
     name: linux-troubleshooting-lab-logs

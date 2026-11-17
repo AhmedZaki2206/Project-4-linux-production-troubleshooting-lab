@@ -7,7 +7,7 @@ root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 cd "$root"
 dc=(docker compose -p linux-troubleshooting-lab)
 
-baseline() { "${dc[@]}" up -d --build --remove-orphans; }
+baseline() { "${dc[@]}" up -d --remove-orphans; }
 reset_lab() {
   HOST_PORT=8080 "${dc[@]}" -f compose.yaml down --remove-orphans >/dev/null 2>&1 || true
   docker rm -f linux-troubleshooting-lab-port-owner >/dev/null 2>&1 || true
@@ -17,7 +17,7 @@ reset_lab() {
 fault_up() {
   local file=$1
   printf '%s\n' "$file" >.lab-state/fault-compose
-  "${dc[@]}" -f compose.yaml -f "$file" up -d --build --force-recreate
+  "${dc[@]}" -f compose.yaml -f "$file" up -d --force-recreate
 }
 
 if [[ $action == reset ]]; then reset_lab; exit 0; fi
@@ -64,7 +64,7 @@ case "$id" in
   14) fault_up faults/proxy-503.yaml ;;
   15) fault_up faults/proxy-broken.yaml ;;
   16) fault_up faults/crash-loop.yaml ;;
-  18) HOST_PORT=8081 "${dc[@]}" up -d --build --force-recreate ;;
+  18) HOST_PORT=8081 "${dc[@]}" up -d --force-recreate ;;
   20) "${dc[@]}" exec -T -u 0 proxy chmod 500 /var/log/nginx ;;
 esac
 echo "Incident $id started. Investigate before reading docs/SOLUTIONS.md."

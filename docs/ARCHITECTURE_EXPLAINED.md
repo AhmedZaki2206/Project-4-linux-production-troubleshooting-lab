@@ -2,7 +2,7 @@
 
 ## المكونات الفعلية
 
-`proxy` هو Nginx ويستقبل على `127.0.0.1:8080` فقط. `backend` هو FastAPI على port `8000` داخل network فقط. `toolbox` فيه `curl`, `dig`, `nslookup`, `ip`, `ping`, `ss`, و`nc`. الـnetwork اسمها `linux-troubleshooting-lab-net` و`internal: true`، لذلك الخدمات لا تملك Internet route مباشر.
+`proxy` هو Nginx ويستقبل على `127.0.0.1:8080` فقط. `backend` هو FastAPI على port `8000` داخل network فقط. `toolbox` فيه `curl`, `dig`, `nslookup`, `ip`, `ping`, `ss`, و`nc`. الـbackend والـtoolbox على `linux-troubleshooting-lab-net` وهي `internal: true`. الـproxy متصل أيضًا بـ`linux-troubleshooting-lab-edge` لأن Docker يحتاج bridge غير داخلية لنشر loopback port؛ هذا يعني أن الـproxy يملك egress محتمل بينما backend/toolbox يظلان معزولين.
 
 ```mermaid
 sequenceDiagram
